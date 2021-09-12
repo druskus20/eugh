@@ -1,16 +1,3 @@
-; TODO: Make modules disappear when script output is empty, check if the children is empty?
-; TODO: Make modules be able to change the icon (json?)
-; TODO: Add "echo """ to the begining of scripts (just in case for :visible reasons)
-; TODO: set max length for player and notifications so that it doesnt move other widgets
-
-
-; do I just do this, github poll being a json? - but then that requires all modules being scripted. - but then that requires all modules being scripted, including eww_bars
-;; well no, I could use :visible with the output of the script, but then we run into default values problems? or do we?
-; (defwidget github []
-;   (icon-module :class "github" :icon "" :text github_poll) 
-
-; muted ? "no spek" : '["quiet", "loud", "bruh"]'[round(volume / something, 0)]
-
 ; Windows foldstart
 (defwindow bar
   :monitor 0
