@@ -34,7 +34,7 @@ print_workspaces() {
             class="empty"
         fi  
 
-        buf="$buf (button :class \"$class\" :cursor \"hand\" :onclick \"bspc desktop -f $ws\" \"$icon\")"
+        buf="$buf (eventbox :cursor \"hand\" (button :class \"$class\" :onclick \"bspc desktop -f $ws\" \"$icon\"))"
     done
 
     echo "(box :class \"workspaces\" :halign \"center\" :valign \"center\" :vexpand true :hexpand true $buf)"

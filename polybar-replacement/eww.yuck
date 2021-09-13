@@ -1,3 +1,16 @@
+; TODO: Make modules disappear when script output is empty, check if the children is empty?
+; TODO: Make modules be able to change the icon (json?)
+; TODO: Add "echo """ to the begining of scripts (just in case for :visible reasons)
+; TODO: set max length for player and notifications so that it doesnt move other widgets
+
+
+; do I just do this, github poll being a json? - but then that requires all modules being scripted. - but then that requires all modules being scripted, including eww_bars
+;; well no, I could use :visible with the output of the script, but then we run into default values problems? or do we?
+; (defwidget github []
+;   (icon-module :class "github" :icon "" :text github_poll) 
+
+; muted ? "no spek" : '["quiet", "loud", "bruh"]'[round(volume / something, 0)]
+
 ; Windows foldstart
 (defwindow bar
   :monitor 0
@@ -133,16 +146,16 @@
 (defwidget speaker []
   (icon-module :class "speaker" 
                :icon {speaker_poll.icon}
-    (button :onclick `eww update speaker_poll="$(./modules/speaker.sh toogle)"`
-            :onscroll `eww update speaker_poll="$(./modules/speaker.sh {})"`
-      (label :text {speaker_poll.content}))))
+    (eventbox :onscroll `eww update speaker_poll="$(./modules/speaker.sh {})"`
+      (button :onclick `eww update speaker_poll="$(./modules/speaker.sh toogle)"`
+        (label :text {speaker_poll.content})))))
 
 (defwidget microphone []
   (icon-module :class "microphone" 
                :icon {microphone_poll.icon}
-    (button :onclick `eww update microphone_poll="$(./modules/microphone.sh toogle)"`
-            :onscroll `eww update microphone_poll="$(./modules/microphone.sh {})"`
-      (label :text {microphone_poll.content}))))
+    (eventbox :onscroll `eww update microphone_poll="$(./modules/microphone.sh {})"`
+      (button :onclick `eww update microphone_poll="$(./modules/microphone.sh toogle)"`
+        (label :text {microphone_poll.content})))))
 ; foldend
 
 ; vim:foldmarker=foldstart,foldend
