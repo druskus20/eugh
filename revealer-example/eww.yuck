@@ -1,0 +1,69 @@
+(defwindow test
+  :monitor 0
+  :hexpand false
+  :vexpand false
+  :geometry (geometry :x 350 :y 30 :width "900px" :height "50px")
+  :anchor "top left"
+  (box
+    :space-evenly false
+    (revealer1)
+    (revealer2)))
+
+(defvar reveal1 true)
+(defvar reveal2 true)
+(defvar reveal2-nested true)
+
+; Revealer on hover, using children
+(defwidget revealer-on-hover [revealvar revealvar-name ?class ?duration ?transition]
+  (box
+    :class "${class} revealer-on-hover"
+    :orientation "h"
+    :space-evenly false
+    (eventbox
+      :onhover "eww update ${revealvar-name}=true"
+      :onhoverlost "eww update ${revealvar-name}=false"
+      (box
+        :space-evenly false
+        (children :nth 0)
+        (revealer
+          :reveal revealvar
+          :transition {transition ?: "slideright"}
+          :duration {duration ?: "500ms"}
+          (children :nth 1))))))
+  
+(defwidget revealer1 []
+  (revealer-on-hover 
+    :revealvar reveal1
+    :revealvar-name "reveal1"
+    (test-box)
+    (box 
+      :space-evenly false
+      (test-box :color "red")
+      (test-box :color "green"))))
+ 
+(defwidget revealer2 []
+  (revealer-on-hover 
+    :revealvar reveal2
+    :revealvar-name "reveal2"
+    (test-box)
+    (box 
+      :space-evenly false
+      (test-box :color "red")
+      (test-box :color "green")
+      (revealer-on-hover 
+        :duration "100ms"
+        :revealvar reveal2-nested
+        :revealvar-name "reveal2-nested"
+        (test-box)
+        (box 
+          :space-evenly false
+          (test-box :color "blue")
+          (test-box :color "green"))))))
+        
+(defwidget test-box [?color]
+  (box :class "${color} test-box"
+    :orientation "h"
+    :halign "start"
+    :hexpand false
+    :space-evenly false
+    :width 100))
