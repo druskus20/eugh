@@ -17,6 +17,11 @@ The different [eww](https://github.com/elkowar/eww) configs that I've been makin
 </p>
 
 <p align="center">
-    <img width="100%" src="hover-switch-example/.github/preview.gif">
+    <img src="hover-switch-example/.github/preview.gif">
     Hover Switch
+</p>
+
+<p align="center">
+    <img src="revealer-hover-module/.github/preview.gif">
+    Revealer Hover Module
 </p>
