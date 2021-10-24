@@ -3,5 +3,5 @@
 This is an example of the use of revealer and eventbox together.
 
 <p align="center">
-    <img width="100%" src=".github/preview.gif">
+    <img src=".github/preview.gif">
 </p>
