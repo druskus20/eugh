@@ -15,3 +15,8 @@ The different eww configs that I've been making
     <img width="100%" src="notification-revealer/.github/preview.gif">
     Notification Revealer
 </p>
+
+<p align="center">
+    <img width="100%" src="hover-switch-example/.github/preview.gif">
+    Hover Switch
+</p>
