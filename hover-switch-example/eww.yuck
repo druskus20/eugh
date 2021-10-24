@@ -1,0 +1,34 @@
+(defwindow test
+  :monitor 0
+  :hexpand false
+  :vexpand false
+  :geometry (geometry :x 350 :y 30 :width "200px" :height "50px")
+  :anchor "top left"
+  (box :space-evenly false
+    (hover-switch :var reveal 
+                  :varname "reveal")))
+
+(defvar reveal false)
+
+; NOTE: GTK revealer transitions are kinda stupid
+(defwidget hover-switch [var varname]
+  (eventbox :onhover "eww update ${varname}=true"
+            :onhoverlost "eww update ${varname}=false"
+    (box
+      :space-evenly false
+      (revealer :reveal {!var}
+                :duration "100ms"
+                :transition "slideleft"
+        (test-box :color "green")) 
+      (revealer :reveal {var}
+                :duration "100ms"
+                :transition "slideleft"
+        (test-box :color "red"))))) 
+
+(defwidget test-box [?color]
+  (box :class "${color} test-box"
+    :orientation "h"
+    :halign "start"
+    :hexpand false
+    :space-evenly false
+    :width 50))
