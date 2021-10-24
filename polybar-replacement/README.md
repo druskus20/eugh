@@ -5,5 +5,5 @@ All of the required PR's have been merged by now, so this config should work on 
 
 
 <p align="center">
-    <img width="100%" src="preview.png">
+    <img width="100%" src=".github/preview.png">
 </p>
