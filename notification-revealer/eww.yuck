@@ -1,0 +1,29 @@
+(defwindow test
+  :monitor 0
+  :hexpand false
+  :vexpand false
+  :geometry (geometry :x 350 :y 30 :width "900px" :height "50px")
+  :anchor "top left"
+  (box
+    :space-evenly false
+    (notification-revealer)))
+
+(deflisten notifications_listen :initial '{"show": false, "content": ""}' "./notifications.sh")
+
+(defwidget notification-revealer []
+  (box :class "notification-revealer"
+       :orientation "h"
+       :space-evenly false
+    "NOTIFICATIONS: "
+    (revealer :reveal {notifications_listen.show} 
+              :transition "slideright"
+      (box
+        (literal :valign "center" :content {notifications_listen.content})))))
+  
+(defwidget test-box [?color]
+  (box :class "${color} test-box"
+    :orientation "h"
+    :halign "start"
+    :hexpand false
+    :space-evenly false
+    :width 100))
