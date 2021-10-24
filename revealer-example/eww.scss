@@ -1,3 +1,11 @@
+* {
+  all: unset;
+}
+
+window {
+  background: #0e1419;
+}
+
 .test-box {
   background-color: #2a2a2a;
 }
@@ -9,5 +17,13 @@
 }
 .test-box.green {
     background-color: green;
+}
+
+* {
+  all: unset;
+}
+
+window {
+  background: $background;
 }
 

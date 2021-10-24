@@ -1,0 +1,62 @@
+(defwindow test
+  :monitor 0
+  :hexpand false
+  :vexpand false
+  :geometry (geometry :x 350 :y 30 :width "300px" :height "30px")
+  :anchor "top left"
+  (box :space-evenly false
+       :halign "end"
+    (hover-module)))
+
+(defvar reveal false)
+
+; NOTE: GTK revealer transitions are kinda stupid
+(defwidget hovered-sign [var]
+  (box :space-evenly false
+      (revealer :reveal {!var}
+                :duration "100ms"
+                :transition "slideleft"
+        (children :nth 0)) 
+      (revealer :reveal {var}
+                :duration "100ms"
+                :transition "slideleft"
+        (children :nth 1)))) 
+
+; Revealer on hover, using children
+(defwidget revealer-on-hover [var varname ?class ?duration ?transition]
+  (box :class "${class} revealer-on-hover"
+       :orientation "h"
+       :space-evenly false
+    (eventbox :class "eventbox"
+              :onhover "eww update ${varname}=true"
+              :onhoverlost "eww update ${varname}=false"
+      (box :space-evenly false
+        (children :nth 0)
+        (revealer :reveal var
+                  :transition {transition ?: "slideright"}
+                  :duration {duration ?: "500ms"}
+          (children :nth 1))
+        (children :nth 2)))))
+
+
+(defwidget hover-module [?class]
+  (box :space-evenly false
+       :class "hover-module ${class}"
+    (revealer-on-hover :class "hl-on-hover"
+                       :var reveal
+                       :varname "reveal"
+                       :transition "slideleft"
+          
+      (hovered-sign :var reveal 
+        "《"
+        "》")
+      "You have 1 notification"
+      "  ")))
+
+(defwidget test-box [?color]
+  (box :class "${color} test-box"
+    :orientation "h"
+    :halign "start"
+    :hexpand false
+    :space-evenly false
+    :width 50))
