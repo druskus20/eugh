@@ -36,3 +36,9 @@ The different [eww](https://github.com/elkowar/eww) configs that I've been makin
     <br>
     Collapsed Scales Concept
 </p>
+
+<p align="center">
+    <img src="bar-concept/.github/preview.gif">
+    <br>
+    Bar Concept
+</p>
