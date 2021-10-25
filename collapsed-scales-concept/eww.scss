@@ -1,0 +1,71 @@
+$foreground: #ffffff;
+$grey: #aaaaaa;
+$foreground-alt: #465059;
+$background: #0e1419;
+$black: #000000;
+$red: #ff6565;
+$green: #b8cc52;
+$yellow: #e6c446;
+$blue: #68d4ff;
+$magenta: #ffa3aa;
+$cyan: #36a3d9;
+$white: #ffffff;
+
+* {
+  all: unset;
+  font-size: 20px;
+}
+
+scale trough {
+  all: unset;
+  background-color: $grey;
+  border-radius: 50px;
+  min-height: 10px;
+  min-width: 100px;
+  margin: 0 20px 0 20px;
+}
+scale trough highlight {
+  all: unset;
+  background-color: $red;
+  border-radius: 10px;
+}
+
+
+.bar {
+//  padding: 5px
+}
+.hover-module {
+  .icon, .hovered-sign, .revealed-content {
+    padding: 10px;
+  }
+
+  .icon, .hovered-sign {
+    background: $red;
+  }
+
+  .revealed-content {
+    background: $magenta;
+  }
+}
+
+.hover-module .eventbox {
+  color: #000000;
+
+}
+.hover-module .eventbox:hover {
+  color: $foreground;
+}
+
+// Test
+.test-box {
+  background-color: #2a2a2a;
+}
+.test-box.red {
+    background-color: red;
+}
+.test-box.blue {
+    background-color: blue;
+}
+.test-box.green {
+    background-color: green;
+}

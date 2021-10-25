@@ -25,3 +25,8 @@ The different [eww](https://github.com/elkowar/eww) configs that I've been makin
     <img src="revealer-hover-module/.github/preview.gif">
     Revealer Hover Module
 </p>
+
+<p align="center">
+    <img src="collapsed-scales-concept/.github/preview.gif">
+    Collapsed Scales Concept
+</p>
