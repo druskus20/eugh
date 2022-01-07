@@ -42,3 +42,6 @@ The different [eww](https://github.com/elkowar/eww) configs that I've been makin
     <br>
     Bar Concept
 </p>
+
+## See also 
+[My dotfiles](https://github.com/druskus20/dots) (for the most uppdated version of my current eww config)
