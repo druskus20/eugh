@@ -3,8 +3,7 @@
   :monitor 0
   :hexpand false
   :vexpand false
-  :geometry (geometry :x 0 :y 0 :width "100%")
-  :anchor "top left"
+  :geometry (geometry :anchor "top left" :x 0 :y 0 :width "100%")
   :reserve (struts :distance "10px" :side "top")
   (bar :screen 0))
 ; foldend

@@ -2,8 +2,7 @@
   :monitor 0
   :hexpand false
   :vexpand false
-  :geometry (geometry :x 350 :y 30 :width "200px" :height "50px")
-  :anchor "top left"
+  :geometry (geometry :anchor "top left" :x 350 :y 30 :width "200px" :height "50px")
   (box :space-evenly false
     (hover-switch :var reveal 
                   :varname "reveal")))
