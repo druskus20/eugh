@@ -2,8 +2,7 @@
   :monitor 0
   :hexpand false
   :vexpand false
-  :geometry (geometry :x 350 :y 30 :width "300px" :height "30px")
-  :anchor "top left"
+  :geometry (geometry :anchor "top left" :x 350 :y 30 :width "300px" :height "30px")
   (box :class "bar"
        :space-evenly false
        :halign "end"
