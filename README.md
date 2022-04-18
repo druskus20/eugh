@@ -8,6 +8,12 @@ The different [eww](https://github.com/elkowar/eww) configs that I've been makin
 </p>
 
 <p align="center">
+    <img src="workspace-indicator/.github/preview.png">
+    <br>
+    Workspace Indicator
+</p>
+
+<p align="center">
     <img src="revealer-example/.github/preview.gif">
     <br>
     Revealer Example
