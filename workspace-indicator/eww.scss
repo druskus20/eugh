@@ -1,0 +1,44 @@
+* {
+    all: unset;
+}
+  
+.top {
+    background-color: #202020;
+}
+
+.ws {
+    // Figure out new font awesome stuff
+
+    .small-ws {
+        &.status-empty {
+            font-family: "Font Awesome 6 Free Solid";
+            color: rgba(237, 112, 112, 0.3);
+        }
+        &.status-occupied {
+            font-family: "Font Awesome 6 Free Solid";
+            color: rgba(255, 255, 255, 0.5);
+            color: rgba(237, 112, 112, 0.5);
+        }
+        &.status-focused {
+            font-family: "Font Awesome 6 Free Solid";
+            color: rgba(237, 112, 112, 1.0);
+        }
+        &.status-urgent {
+            font-family: "Font Awesome 6 Free Solid";
+            color: rgba(255, 255, 255, 1.0)
+        }
+
+    }
+
+    .big-ws {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        margin: 4px;
+        background-image: url("res/rhombus.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+

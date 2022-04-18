@@ -1,0 +1,57 @@
+(defvar WS '{"ws1": [{"name": "1", "icon": "", "status": "occupied"},
+                     {"name": "2", "icon": "", "status": "empty"},
+                     {"name": "3", "icon": "", "status": "focused"}],
+             "ws2": [{"name": "4", "icon": "", "status": "empty"},
+                     {"name": "5", "icon": "", "status": "occupied"},
+                     {"name": "6", "icon": "", "status": "urgent"}],
+             "focused": "3"}')
+
+(defwindow bar
+  :monitor 0
+  :reserve (struts :distance "50px" :side "left")
+  :geometry (geometry :anchor "top left" :x 0 :y 0 :width "50px" :height "100%")
+  (box :class "top"
+       :orientation "vertical"
+       :space-evenly false
+       :hexpand false
+       :vexpand false
+       :valign "start"
+    (ws)))
+  
+
+(defwidget ws []
+  (box :class "ws"
+       :orientation "vertical"
+       :space-evenly false
+    (small-wss :wss "${WS.ws1}")
+    (small-wss :wss "${WS.ws2}")
+    (big-ws :focused-ws "${WS.focused}")))
+
+
+(defwidget small-wss [wss]
+  (box 
+    :class "small-wss"
+    :hexpand false
+    :vexpand false
+    (for ws in wss
+      (small-ws :ws ws))))
+    
+(defwidget small-ws [ws]
+  (eventbox 
+    :cursor "hand"
+    (button
+      :onclick "bspc desktop -f ${ws.name}"
+      (label 
+        :class "small-ws status-${ws.status}"
+        :text "${ws.icon}"))))
+
+(defwidget big-ws [focused-ws]
+  (box
+    :class "big-ws"
+    :hexpand false
+    :vexpand false
+    :height "50"
+    :width "50"
+
+    (label 
+      :text "${focused-ws}")))
