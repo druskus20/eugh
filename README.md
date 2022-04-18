@@ -14,6 +14,12 @@ The different [eww](https://github.com/elkowar/eww) configs that I've been makin
 </p>
 
 <p align="center">
+    <img src="drag-drop-clipboard/.github/preview.gif">
+    <br>
+    Drag and Drop Clipboard
+</p>
+
+<p align="center">
     <img src="revealer-example/.github/preview.gif">
     <br>
     Revealer Example
