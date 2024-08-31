@@ -1,0 +1,112 @@
+; eww config
+
+; ━━━━ windows ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defwindow win0 :monitor 0
+               :geometry (geometry :x 0 :y 0 :height "15px" :width "100%" :anchor "center top")
+               :stacking "fg" 
+               :exclusive true
+               :focusable false
+  (bar0 :monitor "eDP-1"))
+(defwindow win1 :monitor 1
+               :geometry (geometry :x 0 :y 0 :height "15px" :width "100.01%" :anchor "center top")
+               :stacking "fg" 
+               :exclusive true
+               :focusable false
+  (bar0 :monitor "HDMI-A-1"))
+(defwindow win2 :monitor 2
+               :geometry (geometry :x 0 :y 0 :height "15px" :width "100.01%" :anchor "center top")
+               :stacking "fg" 
+               :exclusive true
+               :focusable false
+  (bar0 :monitor "DP-2"))
+
+; ━━━━ bars ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defwidget bar0 [monitor] 
+  (box :orientation "h"
+       :space-evenly true
+       :class "bar"
+    (box :class "right"
+         :halign "start"
+         :spacing 20
+      (workspaces :monitor monitor))
+    (box :class "right"
+         :halign "end"
+         :spacing 20
+         :space-evenly false
+      (tray)
+      (volume)
+      (battery)
+      (time)
+      (date))))
+
+; ━━━━ workspaces ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(deflisten workspaces :initial '{"DP-2": [], "HDMI-A-1": [], "eDP-1": []}' "./modules/sway-workspaces.py")
+
+(defwidget workspaces [monitor]
+  (box :orientation "h" :class "workspaces"
+    (for wsp in {workspaces[monitor]}
+      (button :class "workspace ${wsp.class}"
+              :onclick "swaymsg workspace ${wsp.name}"
+        (box
+          (label :class "icon" :text "${wsp.icon}")
+          (label :class "name" :text "${wsp.name}"))))))
+        ;{wsp.name}))))
+
+; ━━━━ tray ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defwidget tray []
+  (box :class "tray"
+    (systray)))
+
+; ━━━━ volume ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(deflisten volume :initial 0  "./modules/listen-volume.sh")
+
+(defwidget volume []
+  (box :class "volume"
+    :space-evenly false
+    (label :class "icon" :text "󰕾")
+    (scale :min 0 :max 100 :value volume :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")))
+
+; ━━━━ battery ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defwidget battery []
+  (box :class "battery"
+    :space-evenly false
+    (label :class "icon" 
+           :text "${  EWW_BATTERY["BAT0"].capacity > 95 ? '󰁹' 
+                    : EWW_BATTERY["BAT0"].capacity > 90 ? '󰂂' 
+                    : EWW_BATTERY["BAT0"].capacity > 80 ? '󰂁' 
+                    : EWW_BATTERY["BAT0"].capacity > 70 ? '󰂀' 
+                    : EWW_BATTERY["BAT0"].capacity > 60 ? '󰁿' 
+                    : EWW_BATTERY["BAT0"].capacity > 50 ? '󰁾' 
+                    : EWW_BATTERY["BAT0"].capacity > 40 ? '󰁽' 
+                    : EWW_BATTERY["BAT0"].capacity > 30 ? '󰁼' 
+                    : EWW_BATTERY["BAT0"].capacity > 20 ? '󰁻' 
+                    : EWW_BATTERY["BAT0"].capacity > 10 ? '󰁺' 
+                    : '󰂃' }")
+    (label :text "${EWW_BATTERY["BAT0"].capacity}" :halign "center" :xalign 0.5 :justify "right")))
+
+; ━━━━ date ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defpoll date_poll :interval "1m" "date +%d/%m")
+
+(defwidget date []
+  (box :class "date"
+    :space-evenly false
+    (label :class "icon" :text "")
+    (label :text date_poll)))
+
+; ━━━━ time ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+
+(defpoll time_poll :interval "1s" "date +%H:%M")
+
+(defwidget time []
+  (box :class "time"
+    :space-evenly false
+    (label :class "icon" :text "󰥔")
+    (label :text time_poll))) 
+
