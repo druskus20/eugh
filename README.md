@@ -2,6 +2,12 @@
 The different [eww](https://github.com/elkowar/eww) configs that I've been making
 
 <p align="center">
+    <img src="simpler-bar/.github/preview.png">
+    <br>
+    Simpler Bar (My most recent bar)
+</p>
+
+<p align="center">
     <img src="polybar-replacement/.github/preview.png">
     <br>
     Polybar Replacement
